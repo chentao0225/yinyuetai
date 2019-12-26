@@ -28,7 +28,9 @@ body {
   background-color: #eee;
 }
 #wrap .header {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   background-color: #333;
 }
@@ -39,7 +41,7 @@ body {
   float: left;
   width: 3.55555556rem;
   height: 1.3037037rem;
-  margin: 0.38518519rem 0 0.31111111rem 0;
+  margin: 0.38518519rem 0.25185185rem 0.31111111rem;
 }
 #wrap .header .headerTop .logo img {
   width: 100%;
@@ -68,6 +70,7 @@ body {
   line-height: 1.15555556rem;
   background-color: #669900;
   color: #ccc;
+  margin-right: 0.22222222rem;
   font-size: 0.62222222rem;
   text-align: center;
   border-radius: 0.11851852rem;
@@ -114,6 +117,7 @@ body {
   border-radius: 0 0.22222222rem 0.22222222rem 0;
 }
 #wrap .header .mask {
+  display: none;
   position: absolute;
   left: 0;
   top: 2rem;
@@ -132,5 +136,39 @@ body {
   font-weight: bold;
 }
 #wrap .header .mask li a {
+  color: #fff;
+}
+#wrap .contentWrap {
+  width: 100%;
+  height: 100%;
+}
+#wrap .contentWrap .content {
+  padding-top: 4rem;
+}
+#wrap .contentWrap .content .navWrap {
+  box-sizing: border-box;
+  height: 2.62222222rem;
+  padding: 0.45925926rem 0 0.20740741rem 0;
+}
+#wrap .contentWrap .content .navWrap .navList {
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+}
+#wrap .contentWrap .content .navWrap .navList li {
+  display: inline-block;
+  height: 1.91111111rem;
+  padding: 0 0.56296296rem;
+  font-size: 1rem;
+  line-height: 1.91111111rem;
+}
+#wrap .contentWrap .content .navWrap .navList li a {
+  color: #020202;
+}
+#wrap .contentWrap .content .navWrap .navList li.active {
+  background-color: #690;
+}
+#wrap .contentWrap .content .navWrap .navList li.active a {
   color: #fff;
 }

@@ -15,7 +15,7 @@
 							<img src="img/logo.png" alt="">
 						</a>
 					</h1>
-					<a href="" class="menuBtn menuClose"></a>
+					<a href="javascript:;" class="menuBtn menuClose"></a>
 					<div class="btns">
 						<a href="javascript:;">搜索</a>
 						<a href="javascript:;">登录</a>
@@ -41,6 +41,26 @@
 					<li><a href="javascript:;">热门应用</a></li>
 				</ul>
 			</header>
+			<div class="contentWrap">
+				<div class="content">
+					<nav class="navWrap">
+						<ul class="navList">
+							<li class="active"><a href="javascript:;">首页</a></li>
+							<li><a href="javascript:;">MV</a></li>
+							<li><a href="javascript:;">悦单</a></li>
+							<li><a href="javascript:;">V榜</a></li>
+							<li><a href="javascript:;">音悦</a></li>
+							<li><a href="javascript:;">商城</a></li>
+							<li><a href="javascript:;">节目</a></li>
+							<li><a href="javascript:;">饭团</a></li>
+							<li><a href="javascript:;">资讯</a></li>
+							<li><a href="javascript:;">我的家</a></li>
+							<li><a href="javascript:;">APP下载</a></li>
+							<li><a href="javascript:;">热门应用</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 		</div>
 		<script>
 			!(function(){
@@ -58,6 +78,49 @@
 					window.location.href=this.href;
 				});
 			}
+			menuBtnChange();
+			function menuBtnChange(){
+				var menuBtn=document.querySelector('#wrap .header .headerTop .menuBtn');
+				var mask=document.querySelector('#wrap .header .mask');
+				var flag=false;
+				menuBtn.addEventListener('touchstart',function(e){
+					if(flag){
+						menuBtn.className='menuBtn menuClose';
+						mask.style.display='none';
+					}else{
+						menuBtn.className='menuBtn menuOpen';
+						mask.style.display='block';
+					}
+					flag=!flag;
+					e.stopPropagation();
+					e.preventDefault();
+				});
+				document.addEventListener('touchstart',function(){
+					if(flag){
+						menuBtn.className='menuBtn menuClose';
+						mask.style.display='none';
+					}
+					flag=flase;
+				});
+				mask.addEventListener('touchstart',function(e){
+					e.stopPropagation();
+					e.preventDefault();
+				});
+			}
+			
+			focusChange();
+			function focusChange(){
+				var textInput=document.querySelector('#wrap .header .search input[type="text"]');
+				textInput.addEventListener('touchstart',function(e){
+					textInput.focus();
+					e.stopPropagation();
+					e.preventDefault();
+				})
+				textInput.addEventListener('touchend',function(){
+					textInput.blur();
+				})
+			}
+			
 		</script>
 	</body>
 </html>
