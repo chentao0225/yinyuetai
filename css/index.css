@@ -146,9 +146,9 @@ body {
   padding-top: 4rem;
 }
 #wrap .contentWrap .content .navWrap {
-  box-sizing: border-box;
   height: 2.62222222rem;
-  padding: 0.45925926rem 0 0.20740741rem 0;
+  box-sizing: border-box;
+  padding: 0.45925926rem 0 0.20740741rem;
 }
 #wrap .contentWrap .content .navWrap .navList {
   float: left;

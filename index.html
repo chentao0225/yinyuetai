@@ -62,7 +62,8 @@
 				</div>
 			</div>
 		</div>
-		<script>
+		<script src="js/transform.js"></script>
+		<script type="text/javascript">
 			!(function(){
 				var width=document.documentElement.clientWidth;
 				var styleNode=document.createElement('style');
@@ -78,6 +79,8 @@
 					window.location.href=this.href;
 				});
 			}
+			
+			//头部菜单效果
 			menuBtnChange();
 			function menuBtnChange(){
 				var menuBtn=document.querySelector('#wrap .header .headerTop .menuBtn');
@@ -100,14 +103,14 @@
 						menuBtn.className='menuBtn menuClose';
 						mask.style.display='none';
 					}
-					flag=flase;
+					flag=false;
 				});
 				mask.addEventListener('touchstart',function(e){
 					e.stopPropagation();
 					e.preventDefault();
 				});
 			}
-			
+			//搜索框焦点获取
 			focusChange();
 			function focusChange(){
 				var textInput=document.querySelector('#wrap .header .search input[type="text"]');
@@ -115,10 +118,87 @@
 					textInput.focus();
 					e.stopPropagation();
 					e.preventDefault();
-				})
-				textInput.addEventListener('touchend',function(){
+				});
+				document.addEventListener('touchstart',function(){
 					textInput.blur();
-				})
+				});
+			}
+			
+			//导航滑动
+			navMove();
+			function navMove(){
+				var navWrap=document.querySelector('#wrap .contentWrap .content .navWrap');
+				var navList=document.querySelector('#wrap .contentWrap .content .navWrap .navList');
+				var eleX=0;
+				var startX=0;
+				var s1=0;
+				var t1=0;
+				var s2=0;
+				var t2=0;
+				navWrap.addEventListener('touchstart',function(e){
+					var touch=e.changedTouches[0];
+					navList.style.transition='none';
+					eleX=transformCss(navList,'translateX');
+					startX=touch.clientX;
+					s1=eleX;
+					t1=new Date().getTime();
+				});
+				navWrap.addEventListener('touchmove',function(e){
+					var touch=e.changedTouches[0];
+					var endX=touch.clientX;
+					var disX=endX-startX;
+					var lastX=eleX+disX;
+					if(lastX>0){
+						var scale=0.6-lastX/(3*document.documentElement.clientWidth);
+						lastX=lastX*scale;
+					}else if(lastX<document.documentElement.clientWidth-navList.offsetWidth){
+						var temp=Math.abs(lastX)-Math.abs(document.documentElement.clientWidth-navList.offsetWidth);
+						var scale=0.6-temp/(3*document.documentElement.clientWidth);
+						temp=temp*scale;
+						lastX=document.documentElement.clientWidth-navList.offsetWidth-temp;
+					}
+					transformCss(navList,'translateX',lastX);
+				});
+				navWrap.addEventListener('touchend',function(e){
+					var touch=e.changedTouches[0];
+					//加速
+					s2=transformCss(navList,'translateX');
+					t2=new Date().getTime();
+					var speed=(s2-s1)/(t2-t1);
+					var lastX=s2+speed*100;
+					//回退
+					var bezier='';
+					if(lastX>0){
+						lastX=0;
+						bezier='cubic-bezier(.13,.67,.67,1.73)';
+					}else if(lastX<document.documentElement.clientWidth-navList.offsetWidth){
+						lastX=document.documentElement.clientWidth-navList.offsetWidth;
+						bezier='cubic-bezier(.13,.67,.67,1.73)';
+					}
+					navList.style.transition='1s '+bezier;
+					transformCss(navList,'translateX',lastX);
+				});
+			}
+			//改变导航颜色
+			navChangeColor();
+			function navChangeColor(){
+				var navItems=document.querySelectorAll('#wrap .contentWrap .content .navWrap .navList li');
+				var isMove=false;
+				for (var i = 0; i < navItems.length; i++) {
+					//解决误触
+					navItems[i].addEventListener('touchmove',function(){
+						isMove=true;
+					})
+					navItems[i].addEventListener('touchend',function(){
+						if(!isMove){
+							for (var j = 0; j< navItems.length; j++) {
+								navItems[j].className='';
+							}
+							this.className='active';
+						}
+						isMove=false;
+					});
+			}
 			}
 			
 		</script>
