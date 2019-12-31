@@ -172,3 +172,34 @@ body {
 #wrap .contentWrap .content .navWrap .navList li.active a {
   color: #fff;
 }
+#wrap .contentWrap .content .bannerWrap {
+  position: relative;
+  width: 100%;
+}
+#wrap .contentWrap .content .bannerWrap .bannerList {
+  overflow: hidden;
+}
+#wrap .contentWrap .content .bannerWrap .bannerList li {
+  float: left;
+}
+#wrap .contentWrap .content .bannerWrap .bannerList li img {
+  width: 100%;
+}
+#wrap .contentWrap .content .bannerWrap .icons {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+}
+#wrap .contentWrap .content .bannerWrap .icons span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+}
+#wrap .contentWrap .content .bannerWrap .icons span.active {
+  background-color: red;
+}

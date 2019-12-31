@@ -59,6 +59,42 @@
 							<li><a href="javascript:;">热门应用</a></li>
 						</ul>
 					</nav>
+					<div class="bannerWrap">
+						<ul class="bannerList">
+							<li>
+								<a href="javascript:;">
+									<img src="img/1.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="img/2.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="img/3.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="img/4.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="img/5.jpg" alt="" />
+								</a>
+							</li>
+						</ul>
+						<div class="icons">
+							<span class='active'></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -198,8 +234,84 @@
 						}
 						isMove=false;
 					});
+				}
 			}
+			
+			//banner
+			
+			var bannerWrap=document.querySelector('#wrap .contentWrap .content .bannerWrap');
+			var bannerList=document.querySelector('#wrap .contentWrap .content .bannerWrap .bannerList');
+			bannerList.innerHTML+=bannerList.innerHTML;
+			var bannerItems=document.querySelectorAll('#wrap .contentWrap .content .bannerWrap .bannerList li');
+			var styleNode=document.createElement('style');
+			styleNode.innerHTML='#wrap .contentWrap .content .bannerWrap .bannerList{width: '+bannerItems.length+'00%;}';
+			styleNode.innerHTML+='#wrap .contentWrap .content .bannerWrap .bannerList li{width:'+100/bannerItems.length+'%;}';
+			document.head.appendChild(styleNode);
+			var iconItems=document.querySelectorAll('#wrap .contentWrap .content .bannerWrap .icons span');
+			var eleX=0;
+			var startX=0;
+			var index=0;
+			var timer=0;
+			bannerWrap.addEventListener('touchstart',function(e){
+				var touch=e.changedTouches[0];
+				clearInterval(timer);
+				bannerList.style.transition='none';
+				if(index==0){
+					index=iconItems.length;
+					var lastX=-index*document.documentElement.clientWidth;
+					transformCss(bannerList,'translateX',lastX);
+				}else if(index==bannerItems.length-1){
+					index=iconItems.length-1;
+					var lastX=-index*document.documentElement.clientWidth;
+					transformCss(bannerList,'translateX',lastX);
+				}
+				eleX=transformCss(bannerList,'translateX');
+				startX=touch.clientX;
+			});
+			bannerWrap.addEventListener('touchmove',function(e){
+				var touch=e.changedTouches[0];
+				var endX=touch.clientX;
+				var disX=endX-startX;
+				var lastX=eleX+disX;
+				
+				transformCss(bannerList,'translateX',lastX);
+			});
+			bannerWrap.addEventListener('touchend',function(e){
+				var touch=e.changedTouches[0];
+				var endX=transformCss(bannerList,'translateX');
+				index=Math.round(-endX/document.documentElement.clientWidth);
+				var lastX=-index*document.documentElement.clientWidth;
+				bannerList.style.transition='1s';
+				transformCss(bannerList,'translateX',lastX);
+				for (var i = 0; i < iconItems.length; i++) {
+					iconItems[i].className='';
+				}
+				iconItems[index%iconItems.length].className='active';
+				autoMove();
+			});
+			
+			function autoMove(){
+				timer=setInterval(function(){
+					if(index==bannerItems.length-1){
+						index=iconItems.length-1;
+						var lastX=-index*document.documentElement.clientWidth;
+						bannerList.style.transition='none';
+						transformCss(bannerList,'translateX',lastX);
+					}
+					
+					setTimeout(function(){
+						index++;
+						var lastX=-index*document.documentElement.clientWidth;
+						bannerList.style.transition='1s';
+						transformCss(bannerList,'translateX',lastX);
+						for (var i = 0; i < iconItems.length; i++) {
+							iconItems[i].className='';
+						}
+						iconItems[index%iconItems.length].className='active';
+					},20);
+				},2000);
 			}
+			
 			
 		</script>
 	</body>
