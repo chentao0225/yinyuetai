@@ -203,3 +203,93 @@ body {
 #wrap .contentWrap .content .bannerWrap .icons span.active {
   background-color: red;
 }
+#wrap .contentWrap .content .tab {
+  width: 15.4962963rem;
+  background-color: #fff;
+  margin: 0 auto;
+}
+#wrap .contentWrap .content .tab .tabHeader {
+  height: 2rem;
+  line-height: 2rem;
+}
+#wrap .contentWrap .content .tab .tabHeader h3 {
+  float: left;
+  font-size: 1rem;
+}
+#wrap .contentWrap .content .tab .tabHeader a {
+  float: right;
+  font-size: .6rem;
+  color: #333;
+}
+#wrap .contentWrap .content .tab .tabNav {
+  position: relative;
+  height: 1.55555556rem;
+  line-height: 1.55555556rem;
+}
+#wrap .contentWrap .content .tab .tabNav a {
+  float: left;
+  height: 1.55555556rem;
+  width: 1.77777778rem;
+  font-size: 0.65185185rem;
+  text-align: center;
+  color: #6b6b6b;
+}
+#wrap .contentWrap .content .tab .tabNav .smallGreen {
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 1.77777778rem;
+  height: 0.13333333rem;
+  background-color: #6f900d;
+}
+#wrap .contentWrap .content .tab .tabWrap {
+  width: 100%;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList {
+  width: 300%;
+  overflow: hidden;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .loading {
+  float: left;
+  width: 33.333333%;
+  height: 1.4962963rem;
+  background: url(../img/loading.gif) no-repeat center;
+  opacity: 0;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain {
+  float: left;
+  width: 33.333333%;
+  overflow: hidden;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li {
+  float: left;
+  box-sizing: border-box;
+  width: 7.4962963rem;
+  margin: 0.11851852rem;
+  padding: 0.07407407rem;
+  font-size: 0.59259259rem;
+  background-color: #efefef;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li a {
+  color: #000;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li a img {
+  width: 100%;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li .ices {
+  margin-top: 3px;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li .ices span {
+  font-size: .6rem;
+  background: url(../img/ice.png) no-repeat;
+  padding-left: 23px;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li .ices span.iceLeft {
+  background-position: 2px 3px;
+}
+#wrap .contentWrap .content .tab .tabWrap .tabList .tabMain li .ices span.iceRight {
+  background-position: 2px -16px;
+}
