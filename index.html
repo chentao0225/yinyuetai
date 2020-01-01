@@ -595,8 +595,10 @@
 					</div>
 				</div>
 			</div>
+			<div class="scrollBar"></div>
 		</div>
 		<script src="js/transform.js"></script>
+		<script src="js/drag.js"></script>
 		<script type="text/javascript">
 			!(function(){
 				var width=document.documentElement.clientWidth;
@@ -614,8 +616,18 @@
 				});
 			}
 			
+			window.onload=function(){
+				menuBtnChange();
+				focusChange();
+				navMove();
+				navChangeColor();
+				bannerMove();
+				tabMove();
+				contentMove();
+			}
+			
 			//头部菜单效果
-			menuBtnChange();
+			
 			function menuBtnChange(){
 				var menuBtn=document.querySelector('#wrap .header .headerTop .menuBtn');
 				var mask=document.querySelector('#wrap .header .mask');
@@ -645,7 +657,7 @@
 				});
 			}
 			//搜索框焦点获取
-			focusChange();
+			
 			function focusChange(){
 				var textInput=document.querySelector('#wrap .header .search input[type="text"]');
 				textInput.addEventListener('touchstart',function(e){
@@ -659,7 +671,7 @@
 			}
 			
 			//导航滑动
-			navMove();
+			
 			function navMove(){
 				var navWrap=document.querySelector('#wrap .contentWrap .content .navWrap');
 				var navList=document.querySelector('#wrap .contentWrap .content .navWrap .navList');
@@ -714,7 +726,7 @@
 				});
 			}
 			//改变导航颜色
-			navChangeColor();
+			
 			function navChangeColor(){
 				var navItems=document.querySelectorAll('#wrap .contentWrap .content .navWrap .navList li');
 				var isMove=false;
@@ -736,7 +748,7 @@
 			}
 			
 			//轮播图效果
-			bannerMove();
+			
 			function bannerMove(){
 				var bannerWrap=document.querySelector('#wrap .contentWrap .content .bannerWrap');
 				var bannerList=document.querySelector('#wrap .contentWrap .content .bannerWrap .bannerList');
@@ -829,7 +841,7 @@
 			}
 			
 			//tab滑屏效果
-			tabMove();
+			
 			function tabMove(){
 				var tabWraps=document.querySelectorAll('#wrap .contentWrap .content .tab .tabWrap');
 				var tabLists=document.querySelectorAll('#wrap .contentWrap .content .tab .tabWrap .tabList');
@@ -940,8 +952,29 @@
 			
 			
 			//主体内容滑屏效果
-			var contentWrap=document.querySelector('#wrap .contentWrap');
-			var content=document.querySelector('#wrap .contentWrap .content');
+			
+			function contentMove(){
+				var contentWrap=document.querySelector('#wrap .contentWrap');
+				var content=document.querySelector('#wrap .contentWrap .content');
+				var scrollBar=document.querySelector('#wrap .scrollBar');
+				var scale=document.documentElement.clientHeight/content.offsetHeight;
+				scrollBar.style.height=document.documentElement.clientHeight*scale+'px';
+				
+				var callback={
+					start:function(){
+						scrollBar.style.opacity='1';
+					},
+					move:function(){
+						scrollBar.style.opacity='1';
+						var lastY=transformCss(content,'translateY');
+						transformCss(scrollBar,'translateY',lastY*-scale);
+					},
+					end:function(){
+						scrollBar.style.opacity='0';
+					}
+				}
+				contentDrag(contentWrap,callback);
+			}
 			
 			
 		</script>

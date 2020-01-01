@@ -21,11 +21,13 @@ html,body{
 }
 @rem:67.5rem;
 #wrap{
+    position:relative;
 	width:100%;
 	height:100%;
 	overflow:hidden;
 	background-color: #eee;
 	.header{
+	    z-index: 100;
 		position:absolute;
 		left:0;
 		top:0;
@@ -142,6 +144,7 @@ html,body{
 	.contentWrap{
 	    width:100%;
 	    height:100%;
+	    overflow: hidden;
 	    .content{
 	        padding-top:270/@rem;
 	        .navWrap{
@@ -298,6 +301,15 @@ html,body{
 	            }
 	        }
 	    }
+	}
+	.scrollBar{
+	    z-index: 150;
+	    position:absolute;
+	    right:0;
+	    top:0;
+	    width:5px;
+        opacity:0;
+	    background-color:skyblue;
 	}
 }
 
