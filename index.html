@@ -250,8 +250,10 @@
 			var iconItems=document.querySelectorAll('#wrap .contentWrap .content .bannerWrap .icons span');
 			var eleX=0;
 			var startX=0;
+			var startY=0;
 			var index=0;
 			var timer=0;
+			var isFirst=true;
 			bannerWrap.addEventListener('touchstart',function(e){
 				var touch=e.changedTouches[0];
 				clearInterval(timer);
@@ -267,13 +269,27 @@
 				}
 				eleX=transformCss(bannerList,'translateX');
 				startX=touch.clientX;
+				startY=touch.clientY;
+				isFirst=true;
 			});
 			bannerWrap.addEventListener('touchmove',function(e){
 				var touch=e.changedTouches[0];
+				if(!isFirst){
+					return;
+				}
 				var endX=touch.clientX;
+				var endY=touch.clientY;
 				var disX=endX-startX;
-				var lastX=eleX+disX;
+				var disY=endY-startY;
 				
+				if(Math.abs(disY)>Math.abs(disX)){
+					if(isFirst){
+						isFirst=false;
+						return;
+					}
+				}
+				
+				var lastX=eleX+disX;
 				transformCss(bannerList,'translateX',lastX);
 			});
 			bannerWrap.addEventListener('touchend',function(e){
