@@ -207,6 +207,7 @@ body {
   width: 15.4962963rem;
   background-color: #fff;
   margin: 0 auto;
+  overflow: hidden;
 }
 #wrap .contentWrap .content .tab .tabHeader {
   height: 2rem;
