@@ -864,11 +864,14 @@
 					var smallGreen=tabNav.querySelector('.smallGreen');
 					tabWrap.addEventListener('touchstart',function(e){
 						var touch=e.changedTouches[0];
-						tabList.style.transition='none';
+						
 						eleX=transformCss(tabList,'translateX');
 						startX=touch.clientX;
 						startY=touch.clientY;
 						isFirst=true;
+						if(Math.abs(disX)<width/2){
+							tabList.style.transition='none';
+						}
 					});
 					tabWrap.addEventListener('touchmove',function(e){
 						var touch=e.changedTouches[0];
